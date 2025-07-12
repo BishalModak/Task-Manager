@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskmanager/ui/screens/sign_in_screen.dart';
+import 'package:taskmanager/ui/screens/sign_up_screen.dart';
 import 'package:taskmanager/ui/screens/splash_screen.dart';
 
 class app extends StatelessWidget {
@@ -39,6 +40,7 @@ class app extends StatelessWidget {
       routes: {
         splashScreen.name: (context) => splashScreen(),
         signInScreen.name: (context) => signInScreen(),
+        signUpScreen.name: (context) => signUpScreen(),
       },
     );
   }

@@ -1,12 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/ui/screens/sign_up_screen.dart';
 import 'package:taskmanager/ui/widgets/background_screen.dart';
 
 class signInScreen extends StatefulWidget {
   const signInScreen({super.key});
 
-  static const String name ='/sign-in';
+  static const String name ='/sign-up';
 
   @override
   State<signInScreen> createState() => _signInScreenState();
@@ -80,7 +81,7 @@ class _signInScreenState extends State<signInScreen> {
                         TextButton(
                           onPressed: _onTapForgotPasswordButton,
                           child: Text(
-                            'Forgot Password',
+                            'Forgot Password ?',
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
@@ -95,7 +96,7 @@ class _signInScreenState extends State<signInScreen> {
                             children: [
                               TextSpan(
                                 text: 'SignUp',
-                                style: TextStyle(color: Colors.grey),
+                                style: TextStyle(color: Colors.green),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = _onTapSignUpButton,
                               ),
@@ -122,5 +123,7 @@ class _signInScreenState extends State<signInScreen> {
 
   void _onTapForgotPasswordButton() {}
 
-  void _onTapSignUpButton() {}
+  void _onTapSignUpButton() {
+    Navigator.pushReplacementNamed(context, signUpScreen.name);
+  }
 }

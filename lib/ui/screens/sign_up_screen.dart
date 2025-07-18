@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager/ui/screens/sign_in_screen.dart';
 import 'package:taskmanager/ui/widgets/background_screen.dart';
 
+import 'forgot_password_email_varification_screen.dart';
+
 class signUpScreen extends StatefulWidget {
   const signUpScreen({super.key});
 
@@ -126,7 +128,7 @@ class _signUpScreenState extends State<signUpScreen> {
                             text: 'Sign In',
                             style: TextStyle(color: Colors.green),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = _onTapSignUpButton,
+                              ..onTap = _onTapSignInButton,
                           ),
                         ],
                       ),
@@ -142,11 +144,14 @@ class _signUpScreenState extends State<signUpScreen> {
   }
 
   void _onTapSignInButton() {
-    Navigator.pop(context);
-    }
+      Navigator.pushReplacementNamed(context, signInScreen.name);
+  }
 
 
   void _onTapSignUpButton() {
     // TODO: Navigate to Sign In screen
+  }
+  void _onforgotpasswordemailvarification(){
+    Navigator.pushReplacementNamed(context, emailVarificationScreen.name);
   }
 }

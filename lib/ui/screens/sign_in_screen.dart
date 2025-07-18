@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/ui/screens/forgot_password_email_varification_screen.dart';
 import 'package:taskmanager/ui/screens/sign_up_screen.dart';
 import 'package:taskmanager/ui/widgets/background_screen.dart';
 
@@ -121,7 +122,9 @@ class _signInScreenState extends State<signInScreen> {
     }
   }
 
-  void _onTapForgotPasswordButton() {}
+  void _onTapForgotPasswordButton() {
+    Navigator.pushReplacementNamed(context, emailVarificationScreen.name);
+  }
 
   void _onTapSignUpButton() {
     Navigator.pushReplacementNamed(context, signUpScreen.name);

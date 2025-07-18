@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/ui/screens/forgot_password_change_password_screen.dart';
 import 'package:taskmanager/ui/screens/forgot_password_email_varification_screen.dart';
 import 'package:taskmanager/ui/screens/forgot_password_pin_verification_screen.dart';
 import 'package:taskmanager/ui/screens/sign_in_screen.dart';
@@ -45,6 +46,7 @@ class app extends StatelessWidget {
         signUpScreen.name: (context) => signUpScreen(),
         emailVarificationScreen.name: (context)=> emailVarificationScreen(),
         pinVarificationScreen.name: (context) => pinVarificationScreen(),
+        changePasswordScreen.name: (context) => changePasswordScreen()
       },
     );
   }

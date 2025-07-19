@@ -137,40 +137,42 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return GestureDetector(
       onTap: _onTapPhotoPicker,
       child: Container(
-                    height: 60,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8),
-                              bottomLeft: Radius.circular(8),
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Photo',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10,),
-                        Text(_selectedImage == null ? 'Select Image' : _selectedImage!.name, maxLines: 1, style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                        ),),
-                      ],
-                    ),
-                  ),
+        height: 60,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                ),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                'Photo',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              _selectedImage == null ? 'Select Image' : _selectedImage!.name,
+              maxLines: 1,
+              style: TextStyle(overflow: TextOverflow.ellipsis),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -181,12 +183,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 
   Future<void> _onTapPhotoPicker() async {
-    final XFile? pickedImage = await _imagePicker.pickImage(source: ImageSource.gallery);
-    if(pickedImage != null){
+    final XFile? pickedImage = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedImage != null) {
       _selectedImage = pickedImage;
-      setState(() {
-
-      });
+      setState(() {});
     }
   }
 }

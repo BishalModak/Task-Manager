@@ -144,14 +144,13 @@ class _signUpScreenState extends State<signUpScreen> {
   }
 
   void _onTapSignInButton() {
-      Navigator.pushReplacementNamed(context, signInScreen.name);
+    Navigator.pushReplacementNamed(context, signInScreen.name);
   }
-
 
   void _onTapSignUpButton() {
     // TODO: Navigate to Sign In screen
   }
-  void _onforgotpasswordemailvarification(){
+  void _onforgotpasswordemailvarification() {
     Navigator.pushReplacementNamed(context, emailVarificationScreen.name);
   }
 }

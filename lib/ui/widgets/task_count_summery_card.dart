@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class TaskCountSummaryCard extends StatelessWidget {
   const TaskCountSummaryCard({
     super.key,
@@ -20,7 +21,7 @@ class TaskCountSummaryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('$count', style: Theme.of(context).textTheme.titleLarge),
-            Text(title, maxLines: 1,),
+            Text(title, maxLines: 1),
           ],
         ),
       ),

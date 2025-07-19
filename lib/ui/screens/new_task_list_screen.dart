@@ -36,19 +36,21 @@ class _newTaskListState extends State<newTaskList> {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return TaskCard(tasktype: Tasktype.tNew,);
+                  return TaskCard(tasktype: Tasktype.tNew);
                 },
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: _onTapAddNewTaskButton, child: Icon(Icons.add),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onTapAddNewTaskButton,
+        child: Icon(Icons.add),
+      ),
     );
   }
 
-  void _onTapAddNewTaskButton(){
+  void _onTapAddNewTaskButton() {
     Navigator.pushNamed(context, AddNewTaskScreen.name);
+  }
 }
-}
-

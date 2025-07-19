@@ -43,14 +43,14 @@ class app extends StatelessWidget {
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
           ),
-        )
+        ),
       ),
       initialRoute: '/',
       routes: {
         splashScreen.name: (context) => splashScreen(),
         signInScreen.name: (context) => signInScreen(),
         signUpScreen.name: (context) => signUpScreen(),
-        emailVarificationScreen.name: (context)=> emailVarificationScreen(),
+        emailVarificationScreen.name: (context) => emailVarificationScreen(),
         pinVarificationScreen.name: (context) => pinVarificationScreen(),
         changePasswordScreen.name: (context) => changePasswordScreen(),
         mainNavBarScreen.name: (context) => mainNavBarScreen(),

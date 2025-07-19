@@ -9,7 +9,7 @@ import 'package:taskmanager/ui/widgets/background_screen.dart';
 class signInScreen extends StatefulWidget {
   const signInScreen({super.key});
 
-  static const String name ='/sign-up';
+  static const String name = '/sign-up';
 
   @override
   State<signInScreen> createState() => _signInScreenState();
@@ -19,7 +19,6 @@ class _signInScreenState extends State<signInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
 
   @override
   void dispose() {
@@ -51,9 +50,9 @@ class _signInScreenState extends State<signInScreen> {
                     controller: _emailController,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(hintText: 'Email'),
-                    validator: (String? value){
+                    validator: (String? value) {
                       String email = value ?? '';
-                      if(EmailValidator.validate(email) == false){
+                      if (EmailValidator.validate(email) == false) {
                         return 'Enter a valid email';
                       }
                       return null;
@@ -64,8 +63,8 @@ class _signInScreenState extends State<signInScreen> {
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(hintText: 'Password'),
-                    validator: (String? value){
-                      if((value?.length ?? 0)<=6){
+                    validator: (String? value) {
+                      if ((value?.length ?? 0) <= 6) {
                         return 'Enter a valid password';
                       }
                       return null;
@@ -118,10 +117,14 @@ class _signInScreenState extends State<signInScreen> {
   }
 
   void _onTapSignInButton() {
-    if(_formkey.currentState!.validate()){
+    if (_formkey.currentState!.validate()) {
       //TODO: SignIN with API
     }
-    Navigator.pushNamedAndRemoveUntil(context, mainNavBarScreen.name, (predicate) => false);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      mainNavBarScreen.name,
+      (predicate) => false,
+    );
   }
 
   void _onTapForgotPasswordButton() {

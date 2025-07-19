@@ -62,7 +62,7 @@ class _TaskManagerAppBar extends State<TaskManagerAppBar> {
     );
   }
 
-  void _onTapUpdateProfileButton(){
+  void _onTapUpdateProfileButton() {
     if (ModalRoute.of(context)?.settings.name != UpdateProfileScreen.name) {
       Navigator.pushNamed(context, UpdateProfileScreen.name);
     }

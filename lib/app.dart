@@ -7,13 +7,17 @@ import 'package:taskmanager/ui/screens/main_nav_bar_screen.dart';
 import 'package:taskmanager/ui/screens/sign_in_screen.dart';
 import 'package:taskmanager/ui/screens/sign_up_screen.dart';
 import 'package:taskmanager/ui/screens/splash_screen.dart';
+import 'package:taskmanager/ui/screens/update_profile_screen.dart';
 
 class app extends StatelessWidget {
   const app({super.key});
 
+  static GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigator,
       theme: ThemeData(
         colorSchemeSeed: Colors.green,
         textTheme: TextTheme(
@@ -51,6 +55,7 @@ class app extends StatelessWidget {
         changePasswordScreen.name: (context) => changePasswordScreen(),
         mainNavBarScreen.name: (context) => mainNavBarScreen(),
         AddNewTaskScreen.name: (context) => AddNewTaskScreen(),
+        UpdateProfileScreen.name: (context) => UpdateProfileScreen(),
       },
     );
   }

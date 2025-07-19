@@ -27,7 +27,7 @@ class TaskCard extends StatelessWidget {
             Row(
               children: [
                 Chip(
-                  label: Text('New', style: TextStyle(color: Colors.white)),
+                  label: Text(_getTaskTypeName(), style: TextStyle(color: Colors.white)),
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   backgroundColor: _getTaskChipColor(),
                   shape: RoundedRectangleBorder(
@@ -47,14 +47,28 @@ class TaskCard extends StatelessWidget {
   }
 
   Color _getTaskChipColor() {
-    if (tasktype == Tasktype.tNew) {
-      return Colors.blue;
-    } else if (tasktype == Tasktype.progress) {
-      return Colors.purple;
-    } else if (tasktype == Tasktype.completed) {
-      return Colors.green;
-    } else {
-      return Colors.red;
+    switch (tasktype) {
+      case Tasktype.tNew:
+        return Colors.blue;
+      case Tasktype.progress:
+        return Colors.purple;
+      case Tasktype.completed:
+        return Colors.green;
+      case Tasktype.canceled:
+        return Colors.red;
+    }
+  }
+
+  String _getTaskTypeName() {
+    switch (tasktype) {
+      case Tasktype.tNew:
+        return 'New';
+      case Tasktype.progress:
+        return 'Progress';
+      case Tasktype.completed:
+        return 'Completed';
+      case Tasktype.canceled:
+        return 'Canceled';
     }
   }
 }

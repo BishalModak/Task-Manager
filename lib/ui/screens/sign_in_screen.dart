@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/ui/screens/forgot_password_email_varification_screen.dart';
+import 'package:taskmanager/ui/screens/main_nav_bar_screen.dart';
 import 'package:taskmanager/ui/screens/sign_up_screen.dart';
 import 'package:taskmanager/ui/widgets/background_screen.dart';
 
@@ -120,6 +121,7 @@ class _signInScreenState extends State<signInScreen> {
     if(_formkey.currentState!.validate()){
       //TODO: SignIN with API
     }
+    Navigator.pushNamedAndRemoveUntil(context, mainNavBarScreen.name, (predicate) => false);
   }
 
   void _onTapForgotPasswordButton() {

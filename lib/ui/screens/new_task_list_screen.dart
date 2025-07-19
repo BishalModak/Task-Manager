@@ -35,7 +35,7 @@ class _newTaskListState extends State<newTaskList> {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return TaskCard();
+                  return TaskCard(tasktype: Tasktype.tNew,);
                 },
               ),
             ),

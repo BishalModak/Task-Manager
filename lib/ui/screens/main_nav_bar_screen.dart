@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/ui/screens/cancel_task_screen.dart';
+import 'package:taskmanager/ui/screens/completed_task_screen.dart';
 import 'package:taskmanager/ui/screens/new_task_list_screen.dart';
 import 'package:taskmanager/ui/screens/progress_task_screen.dart';
 
@@ -15,7 +17,7 @@ class mainNavBarScreen extends StatefulWidget {
 
 class _mainNavBarScreenState extends State<mainNavBarScreen> {
   List<Widget> _screens = [
-      newTaskList(), ProgressTaskScreen(),
+      newTaskList(), ProgressTaskScreen(), CompletedTaskListScreen() , CancelTaskScreen(),
   ];
   int _selectedIndex = 0;
   @override

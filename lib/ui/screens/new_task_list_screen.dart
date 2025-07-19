@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/ui/screens/add_new_task_screen.dart';
 
 import '../widgets/task_card.dart';
 import '../widgets/task_count_summery_card.dart';
@@ -47,7 +48,7 @@ class _newTaskListState extends State<newTaskList> {
   }
 
   void _onTapAddNewTaskButton(){
-
+    Navigator.pushNamed(context, AddNewTaskScreen.name);
 }
 }
 

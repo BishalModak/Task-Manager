@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 
 class NetworkResponse {
@@ -18,10 +18,13 @@ class NetworkResponse {
 
 class NetworkCaller {
   static const String _defaultErrorMessage = 'Something Went Wrong';
+
   static Future<NetworkResponse> getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
+      _logRequest(url, null);
       Response response = await get(uri);
+      _logResponse(url, response);
       if (response.statusCode == 200) {
         final decodedJson = jsonDecode(response.body);
         return NetworkResponse(
@@ -39,7 +42,7 @@ class NetworkCaller {
       }
     } catch (e) {
       return NetworkResponse(
-        isSuccess: true,
+        isSuccess: false,
         statusCode: -1,
         errorMessage: e.toString(),
       );
@@ -52,11 +55,14 @@ class NetworkCaller {
   }) async {
     try {
       Uri uri = Uri.parse(url);
+      _logRequest(url, body);
       Response response = await post(
         uri,
-        headers: {'content-type': 'Application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode(body),
       );
+      _logResponse(url, response);
+
       if (response.statusCode == 200) {
         final decodedJson = jsonDecode(response.body);
         return NetworkResponse(
@@ -74,10 +80,31 @@ class NetworkCaller {
       }
     } catch (e) {
       return NetworkResponse(
-        isSuccess: true,
+        isSuccess: false,
         statusCode: -1,
         errorMessage: e.toString(),
       );
     }
+  }
+
+  static void _logRequest(String url, Map<String, String>? body) {
+    debugPrint(
+      '============ Request =============\n'
+          'REQUEST\n'
+          'URL  : $url\n'
+          'BODY : $body\n'
+          '=========================\n',
+    );
+  }
+
+  static void _logResponse(String url, Response response) {
+    debugPrint(
+      '============ Respond =============\n'
+          'RESPONSE\n'
+          'URL         : $url\n'
+          'STATUS CODE : ${response.statusCode}\n'
+          'BODY        : ${response.body}\n'
+          '=========================\n',
+    );
   }
 }

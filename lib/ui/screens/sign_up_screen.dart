@@ -1,9 +1,12 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/data/service/network_caller.dart';
 import 'package:taskmanager/ui/screens/sign_in_screen.dart';
 import 'package:taskmanager/ui/widgets/background_screen.dart';
+import 'package:taskmanager/ui/widgets/snak_bar_message.dart';
 
+import '../../data/urls.dart';
 import 'forgot_password_email_varification_screen.dart';
 
 class signUpScreen extends StatefulWidget {
@@ -22,6 +25,7 @@ class _signUpScreenState extends State<signUpScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _signUpInProgress = false;
 
   @override
   void dispose() {
@@ -113,9 +117,15 @@ class _signUpScreenState extends State<signUpScreen> {
                     },
                   ),
                   const SizedBox(height: 14),
-                  ElevatedButton(
-                    onPressed: _onTapSignInButton,
-                    child: const Icon(Icons.arrow_circle_right),
+                  Visibility(
+                    visible: _signUpInProgress == false,
+                    replacement: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: _onTapSignUpButton,
+                      child: const Icon(Icons.arrow_circle_right),
+                    ),
                   ),
                   const SizedBox(height: 40),
                   Center(
@@ -147,8 +157,38 @@ class _signUpScreenState extends State<signUpScreen> {
     Navigator.pushReplacementNamed(context, signInScreen.name);
   }
 
+  void _clearTextFields(){
+    _firstNameController.clear();
+    _lastNameController.clear();
+    _emailController.clear();
+    _phoneController.clear();
+    _passwordController.clear();
+  }
+
   void _onTapSignUpButton() {
-    // TODO: Navigate to Sign In screen
+    if (_formkey.currentState!.validate()) {
+      _signUp();
+    }
+  }
+
+  Future<void> _signUp() async{
+    _signUpInProgress=false;
+    setState(() {});
+    Map<String, String> requestBody ={
+      "email" : _emailController.text.trim(),
+      "firstName" : _firstNameController.text.trim(),
+      "lastName" : _lastNameController.text.trim(),
+      "mobile" : _phoneController.text.trim(),
+      "password" : _passwordController.text,
+    };
+    NetworkResponse response = await NetworkCaller.postRequest(url: Urls.registrationUrl, body:  requestBody);
+    if (response.isSuccess){
+      _clearTextFields();
+      showSnaackBarMessage(context, 'Registration has been success. Please Login.');
+    }else {
+      showSnaackBarMessage(context, response.errorMessage!);
+    }
+
   }
   void _onforgotpasswordemailvarification() {
     Navigator.pushReplacementNamed(context, emailVarificationScreen.name);

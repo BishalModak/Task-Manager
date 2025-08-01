@@ -1,8 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/data/models/user_model.dart';
 import 'package:taskmanager/data/service/network_caller.dart';
 import 'package:taskmanager/data/urls.dart';
+import 'package:taskmanager/ui/controller/auth_controller.dart';
 import 'package:taskmanager/ui/screens/forgot_password_email_varification_screen.dart';
 import 'package:taskmanager/ui/screens/main_nav_bar_screen.dart';
 import 'package:taskmanager/ui/screens/sign_up_screen.dart';
@@ -130,29 +132,30 @@ class _signInScreenState extends State<signInScreen> {
     if (_formkey.currentState!.validate()) {
       _signIn();
     }
-
   }
 
   Future<void> _signIn() async {
-    _signInProgress == true;
+    _signInProgress = true;
     setState(() {});
 
     Map<String, String> requestBody = {
       "email": _emailController.text.trim(),
       "password": _passwordController.text,
     };
+
     NetworkResponse response = await NetworkCaller.postRequest(
-      url: Urls.loginUrl,
-      body: requestBody,
+        url: Urls.loginUrl, body: requestBody,
     );
 
-    if(response.isSuccess){
+    if (response.isSuccess) {
+      UserModel userModel = UserModel.fromJson(response.body!['data']);
+      String token = response.body!['token'];
+
+      await AuthController.saveUserData(userModel, token);
+
       Navigator.pushNamedAndRemoveUntil(
-        context,
-        mainNavBarScreen.name,
-            (predicate) => false,
-      );
-    }else{
+          context, mainNavBarScreen.name, (predicate) => false);
+    } else {
       _signInProgress = false;
       setState(() {});
       showSnaackBarMessage(context, response.errorMessage!);

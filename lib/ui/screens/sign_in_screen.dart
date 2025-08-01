@@ -151,8 +151,7 @@ class _signInScreenState extends State<signInScreen> {
       UserModel userModel = UserModel.fromJson(response.body!['data']);
       String token = response.body!['token'];
 
-      await AuthController.saveUserData(userModel, token);
-
+    await AuthController.saveUserData(userModel, token);
       Navigator.pushNamedAndRemoveUntil(
           context, mainNavBarScreen.name, (predicate) => false);
     } else {

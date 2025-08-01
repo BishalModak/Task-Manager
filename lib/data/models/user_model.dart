@@ -6,16 +6,16 @@ class UserModel{
   late String mobile;
 
   UserModel.fromJson(Map<String, dynamic> jsondata){
-    id = jsondata['id'];
-    email = jsondata ['email'];
-    firstName = jsondata ['firstName'];
-    lastName = jsondata ['lastName'];
-    mobile = jsondata ['mobile'];
+    id = jsondata['_id'] ?? '';
+    email = jsondata['email'] ?? '';
+    firstName = jsondata['firstName'] ?? '';
+    lastName = jsondata['lastName'] ?? '';
+    mobile = jsondata['mobile'] ?? '';
   }
 
   Map<String, dynamic> toJson(){
     return{
-      'id': id,
+      '_id': id,
       'email' : email,
       'firstname' : firstName,
       'lastName' : lastName,
